@@ -43,16 +43,16 @@ def annotate_frame(undist, left_line, right_line):
 
     # plot curvature info
     label_str = 'Left line radius: %.1f km' % (left_curve/1000)
-    result = cv2.putText(result, label_str, (15, 45), 0, 1, (255, 255, 255), 2)
+    result = cv2.putText(result, label_str, (15+660, 45), 0, 1, (255, 255, 255), 2)
     label_str = 'Right line radius: %.1f km' % (right_curve/1000)
-    result = cv2.putText(result, label_str, (15, 85), 0, 1, (255, 255, 255), 2)
+    result = cv2.putText(result, label_str, (15+660, 85), 0, 1, (255, 255, 255), 2)
 
     # Annotate vehicle offset from center
     if vehicle_offset <= 0:
         label_str = 'Vehicle offset to the left: %.1f m' % (abs(vehicle_offset))
     else:
         label_str = 'Vehicle offset to the right: %.2f m' % (abs(vehicle_offset))
-    result = cv2.putText(result, label_str, (15, 130), 0, 1, (255, 255, 255), 2)
+    result = cv2.putText(result, label_str, (15+660, 130), 0, 1, (255, 255, 255), 2)
 
     return result
 

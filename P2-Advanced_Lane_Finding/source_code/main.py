@@ -53,6 +53,17 @@ def pipeline(img, *args):
     # 5.2 Warp the detected lane boundaries back onto the original image.
     # 5.3 Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
     result = annotate_frame(undist, left_line, right_line)
+
+    numpy_vertical1 = np.hstack((img, color_binary))
+    numpy_vertical2 = np.hstack((result, out_img))
+    result = np.vstack((numpy_vertical1, numpy_vertical2))
+    result = cv2.putText(result, 'Original video', (15, 45), 0, 1, (255, 255, 255), 2)
+    result = cv2.putText(result, 'Binary image, blue - yellow color detection, green - white color detection',
+                         (15+1280, 45), 0, 1, (255, 255, 255), 2)
+    result = cv2.putText(result, 'Processed undistorted video', (15, 45+720), 0, 1, (255, 255, 255), 2)
+    result = cv2.putText(result, 'Bird-view with fitted curves for each lane lines',
+                         (15 + 1280, 45+720), 0, 1, (255, 255, 255), 2)
+
     frame_number += 1
 
     # 6. If it is a test imaged store/plot images from different pipeline steps (depends on config flags)
